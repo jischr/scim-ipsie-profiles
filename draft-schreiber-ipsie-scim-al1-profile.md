@@ -58,13 +58,13 @@ By adhering to this profile, organizations can implement SCIM-based integrations
 
 # Conventions and Definitions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 ## Terminology
 
 SCIM
 
-> The System for Cross-domain Identity Management as defined in {{RFC7643}} and {{RFC7644}}
+> The System for Cross-domain Identity Management as defined in [@!RFC7643] and [@!RFC7644]
 
 SCIM Client
 
@@ -77,7 +77,7 @@ SCIM Service Provider
 
 Role
 
-> TODO: Add definition
+> TBD
 
 Identity Service
 
@@ -93,30 +93,26 @@ Note: When SCIM is applied to the context of IPISIE, the Identity Service acts a
 
 ## Authentication and Authorization {#authn-authz}
 
-The Identity Service and Application MUST use OAuth 2.0 {{RFC6749}} for authentication and authorization of SCIM protocol.
+The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of SCIM protocol.
 
-// TODO: Should this link back to SL1?
-
-// TODO: Expand Section
+> **Editor's Note:** This section should be expanded and may need to reference the IPSIE Security Level 1 (SL1) profile.
 
 The following requirements ensure  consistent and secure handling of access tokens and authorization server configuration:
 
-// TODO: Be more explicit with token names.
-
-* OAuth 2.0 interactions MUST comply with JWT Client Authentication as defined in {{RFC7523}}
+* OAuth 2.0 interactions MUST comply with JWT Client Authentication as defined in [@!RFC7523]
 * The token SHALL exchange a signed JWT for an access token and present that token in the {Authorization: Bearer} header on all subsequent SCIM requests.
 * The token MUST contain a "token_endpoint" value which is the URL of the Identity Service's OAuth 2.0 token endpoint.
 * The Acess Token MUST include the "scim" scope and not grant broader permissions.
-* All Authorization Server parameters SHOULD be discovered from OAuth Authorization Server metadata as defined in {{RFC8414}}.
+* All Authorization Server parameters SHOULD be discovered from OAuth Authorization Server metadata as defined in [@!RFC8414].
 * The Identity Service SHOULD expose a jwks_uri to allow the Application to perform signature verification
 
 ## SCIM Interoperability Requirements
 
 ### General Requirements
 
-* The Identity Service SHALL implement the required functionality of a SCIM client as defined in {{RFC7643}} and {{RFC7644}}.
-* The Application SHALL implement the required functionality of a SCIM service provider as defined in {{RFC7643}} and {{RFC7644}}.
-* All SCIM operations SHALL be authenticated and authorized via OAuth 2.0 as specified in {{authn-authz}}.
+* The Identity Service SHALL implement the required functionality of a SCIM client as defined in [@!RFC7643] and [@!RFC7644].
+* The Application SHALL implement the required functionality of a SCIM service provider as defined in [@!RFC7643] and [@!RFC7644].
+* All SCIM operations SHALL be authenticated and authorized via OAuth 2.0 as specified in (#authn-authz).
 * Local modifications to Users or Groups in the Application are prohibited.
 
 ### User Provisioning Operations
@@ -127,9 +123,9 @@ The Application MUST provide support all User provisioning operations defined in
 
 User creation is performed by the SCIM operation POST /Users.
 
-In addition to the user attributes required by {{RFC7643}}, the following attributes are required to be part of the User schema:
+In addition to the user attributes required by [@!RFC7643], the following attributes are required to be part of the User schema:
 
-// TODO: Should we keep this vauge or refer be explicit with attributes we are requiring? email vs emails?
+> **Editor's Note:** Should specify exact attribute names (e.g., "email" vs "emails") rather than keeping this vague.
 
 * An attribute which contains a unique identifier used by the enterprise to distinguish the owner of the account, such as "externalId."
 * An attribute which contains the primary email address of the user, such as "email"
@@ -163,7 +159,7 @@ User deletions are performed by the SCIM operation DELETE /Users/{id}
 
 After a user is deleted, the Application MUST allow the creation of a new user with the same username.
 
-// TODO: this could be tricky RE: maintianing the user's data
+> **Editor's Note:** Need to clarify implications for maintaining user data and avoiding conflicts when recreating users with the same username.
 
 #### Get All Users (GET /Users)
 
@@ -197,7 +193,7 @@ The Application MUST provide support all Group provisioning operations defined i
 
 Group creation is performed by the SCIM operation POST /Group.
 
-// TODO: Add more details
+> **Editor's Note:** This section needs additional details about required Group attributes and schema requirements.
 
 #### Get All Groups (GET /Groups)
 
@@ -215,9 +211,7 @@ Group searches by id are performed by the SCIM operation GET /Group/{id}?exclude
 
 User lookups by alternate identifier are performed by the SCIM operation GET /Groups?filter={filterExpression}&excludedAttributes=members
 
-Application Providers MUST support the following filter expressions:
-
-// TODO: Add what filters are required to be supported
+Application Providers MUST support the following filter expressions: TBD
 
 #### Add or Remove Group Members (PATCH /Group/{id})
 
@@ -229,7 +223,7 @@ The op attribute MUST contain either "add" or "remove".
 
 * When the op is "add":
   * The path attribute MUST be "members".
-  * The value attribute MUST be an array of Group member elements, as defined in Section 4.2 of the SCIM Core Schema {{RFC7643}}. Each member MUST contain a value subattribute with the id of the resource being added to the group.
+  * The value attribute MUST be an array of Group member elements, as defined in Section 4.2 of the SCIM Core Schema [@!RFC7643]. Each member MUST contain a value subattribute with the id of the resource being added to the group.
 
 * When the op is "remove":
   * The path attribute MUST be either:
@@ -241,23 +235,23 @@ The op attribute MUST contain either "add" or "remove".
 
 ### ResourceTypes
 
-Application MUST host a /ResourceTypes endpoint, as defined in Section 4 of {{RFC7644}}.
+Application MUST host a /ResourceTypes endpoint, as defined in Section 4 of [@!RFC7644].
 
 The supported ResourceTypes MUST include Users and Groups.
 
 ### ServiceProviderConfig
 
-Application Providers MUST host a /ServiceProviderConfig endpoint to describe the operations they support, as defined in Section 4 of {{RFC7644}}
+Application Providers MUST host a /ServiceProviderConfig endpoint to describe the operations they support, as defined in Section 4 of [@!RFC7644]
 
 The operations MUST include, at minimum, the set of SCIM capabilities required for compatibility with this IPSIE profile.
 
 ### Schemas
 
-Application Providers MUST host a /Schemas endpoint to describe the supported schemas, as defined in Section 4 of {{RFC7644}}. There must be a schema for both Users and Groups. The schemas must include all required attributes from RFC 7643 and from Section 3.2.3 (Create User).
+Application Providers MUST host a /Schemas endpoint to describe the supported schemas, as defined in Section 4 of [@!RFC7644]. There must be a schema for both Users and Groups. The schemas must include all required attributes from RFC 7643 and from Section 3.2.3 (Create User).
 
 # Security Considerations
 
-For SCIM security considerations, see {{RFC7643}} and {{RFC7644}}
+For SCIM security considerations, see [@!RFC7643] and [@!RFC7644]
 
 Additionally, the following requierements are included to address security considerations.
 
@@ -282,114 +276,9 @@ Implementation of all mandatory requirements in this profile will result in a SC
 * **Application (SCIM service provider)**
   * SHALL host all SCIM endpoints with full support for User and Group provisioning.
   * SHALL prevent local modifications outside of SCIM.
-  * SHALL enforce OAuth 2.0 JWT Profile for Authentication {{RFC7523}}.
+  * SHALL enforce OAuth 2.0 JWT Profile for Authentication [@!RFC7523].
   * SHALL adhere to the security considerations above.
 
 By conforming to this profile, implementations will achieve a consistent, secure, and interoperable baseline for enterprise identity lifecycle management.
 
 {backmatter}
-
-# Normative References
-
-<reference anchor="RFC2119" target="https://www.rfc-editor.org/info/rfc2119">
-  <front>
-    <title>Key words for use in RFCs to Indicate Requirement Levels</title>
-    <author initials="S." surname="Bradner" fullname="S. Bradner">
-      <organization/>
-    </author>
-    <date year="1997" month="March"/>
-  </front>
-</reference>
-
-<reference anchor="RFC6749" target="https://www.rfc-editor.org/info/rfc6749">
-  <front>
-    <title>The OAuth 2.0 Authorization Framework</title>
-    <author initials="D." surname="Hardt" fullname="D. Hardt">
-      <organization/>
-    </author>
-    <date year="2012" month="October"/>
-  </front>
-</reference>
-
-<reference anchor="RFC7523" target="https://www.rfc-editor.org/info/rfc7523">
-  <front>
-    <title>JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants</title>
-    <author initials="M." surname="Jones" fullname="M. Jones">
-      <organization/>
-    </author>
-    <author initials="B." surname="Campbell" fullname="B. Campbell">
-      <organization/>
-    </author>
-    <author initials="C." surname="Mortimore" fullname="C. Mortimore">
-      <organization/>
-    </author>
-    <date year="2015" month="May"/>
-  </front>
-</reference>
-
-<reference anchor="RFC7643" target="https://www.rfc-editor.org/info/rfc7643">
-  <front>
-    <title>System for Cross-domain Identity Management: Core Schema</title>
-    <author initials="P." surname="Hunt" fullname="P. Hunt">
-      <organization/>
-    </author>
-    <author initials="K." surname="Grizzle" fullname="K. Grizzle">
-      <organization/>
-    </author>
-    <author initials="M." surname="Ansari" fullname="M. Ansari">
-      <organization/>
-    </author>
-    <author initials="E." surname="Wahlstroem" fullname="E. Wahlstroem">
-      <organization/>
-    </author>
-    <author initials="C." surname="Mortimore" fullname="C. Mortimore">
-      <organization/>
-    </author>
-    <date year="2015" month="September"/>
-  </front>
-</reference>
-
-<reference anchor="RFC7644" target="https://www.rfc-editor.org/info/rfc7644">
-  <front>
-    <title>System for Cross-domain Identity Management: Protocol</title>
-    <author initials="P." surname="Hunt" fullname="P. Hunt">
-      <organization/>
-    </author>
-    <author initials="K." surname="Grizzle" fullname="K. Grizzle">
-      <organization/>
-    </author>
-    <author initials="E." surname="Wahlstroem" fullname="E. Wahlstroem">
-      <organization/>
-    </author>
-    <author initials="C." surname="Mortimore" fullname="C. Mortimore">
-      <organization/>
-    </author>
-    <date year="2015" month="September"/>
-  </front>
-</reference>
-
-<reference anchor="RFC8174" target="https://www.rfc-editor.org/info/rfc8174">
-  <front>
-    <title>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
-    <author initials="B." surname="Leiba" fullname="B. Leiba">
-      <organization/>
-    </author>
-    <date year="2017" month="May"/>
-  </front>
-</reference>
-
-<reference anchor="RFC8414" target="https://www.rfc-editor.org/info/rfc8414">
-  <front>
-    <title>OAuth 2.0 Authorization Server Metadata</title>
-    <author initials="M." surname="Jones" fullname="M. Jones">
-      <organization/>
-    </author>
-    <author initials="N." surname="Sakimura" fullname="N. Sakimura">
-      <organization/>
-    </author>
-    <author initials="J." surname="Bradley" fullname="J. Bradley">
-      <organization/>
-    </author>
-    <date year="2018" month="June"/>
-  </front>
-</reference>
