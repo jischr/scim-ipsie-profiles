@@ -1,0 +1,9 @@
+*.txt
+*.html
+*.pdf
+*.redxml
+.refcache
+.targets.mk
+lib/
+venv/
+TRANSFORMATION_PLAN.md
