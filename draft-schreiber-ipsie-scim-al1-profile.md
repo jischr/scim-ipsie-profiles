@@ -34,14 +34,14 @@ organization = "SGNL"
 
 This document defines a profile for SCIM 2.0 to meet the security and interoperability requirements for identity lifecycle management within enterprises. Within the context of SCIM, The profile establishes requirements for provisioning, account management, client authentication, and identity synchronization.
 
+{mainmatter}
+
 # Discussion Venues
 
 This note is to be removed before publishing as an RFC.
 
 Source for this draft and an issue tracker can be found at
-<https://github.com/[YOUR-GITHUB-USERNAME]/ipsie-scim-al1>.
-
-{mainmatter}
+<https://github.com/jischr/ipsie-scim-al1-profile>.
 
 # Introduction
 
