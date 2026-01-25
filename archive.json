@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-22T02:26:12.495815+00:00",
+  "timestamp": "2026-01-25T02:33:46.193012+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -50,5 +50,121 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOQ9uW8s6-zMEj",
+      "title": "Nomenclature and clarifying updates",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/1",
+      "state": "OPEN",
+      "author": "PabloValarezo",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Expanding definitions to clarify references to IdP, SP, Client, and Server relationships.\r\n\r\n+ 'Role' definition\r\n\r\nMinor formatting changes",
+      "createdAt": "2026-01-22T21:52:52Z",
+      "updatedAt": "2026-01-22T22:36:59Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "ed7bf03b8f4f81acf17d8e89cb4615fb94d72b08",
+      "headRepository": "PabloValarezo/scim-ipsie-profiles",
+      "headRefName": "suggestions",
+      "headRefOid": "3bddcc226e73b830abfcf8d6431ba1dea7f5b6c2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "PabloValarezo",
+          "authorAssociation": "NONE",
+          "body": "No conflicts with base branch... merging",
+          "createdAt": "2026-01-22T21:54:46Z",
+          "updatedAt": "2026-01-22T21:54:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQ9uW8s7cOf1p",
+          "commit": {
+            "abbreviatedOid": "3bddcc2"
+          },
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T22:03:19Z",
+          "updatedAt": "2026-01-22T22:03:19Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "So i think this is coming from IPSIE terminology. It was called the Identity Service... I think we need to discuss what we shall call these now that we are out of the context of IPSIE working group.",
+              "createdAt": "2026-01-22T22:03:19Z",
+              "updatedAt": "2026-01-22T22:03:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQ9uW8s7cOg1O",
+          "commit": {
+            "abbreviatedOid": "3bddcc2"
+          },
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T22:04:34Z",
+          "updatedAt": "2026-01-22T22:04:34Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "What about...\n\n\"A set of permissions that can be assigned to one or more user\"\n\nA bit simpler and we can remove the citation.",
+              "createdAt": "2026-01-22T22:04:34Z",
+              "updatedAt": "2026-01-22T22:04:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQ9uW8s7cO2XK",
+          "commit": {
+            "abbreviatedOid": "3bddcc2"
+          },
+          "author": "PabloValarezo",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T22:36:10Z",
+          "updatedAt": "2026-01-22T22:36:10Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Sounds good to me",
+              "createdAt": "2026-01-22T22:36:10Z",
+              "updatedAt": "2026-01-22T22:36:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQ9uW8s7cO23B",
+          "commit": {
+            "abbreviatedOid": "3bddcc2"
+          },
+          "author": "PabloValarezo",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T22:36:59Z",
+          "updatedAt": "2026-01-22T22:36:59Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Interesting. I'd like to hear more about the rationale to use this vs. the traditional IdP & SP naming",
+              "createdAt": "2026-01-22T22:36:59Z",
+              "updatedAt": "2026-01-22T22:36:59Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
