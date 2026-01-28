@@ -77,7 +77,7 @@ SCIM Client
 
 > An application that uses the SCIM protocol to manage identity data maintained by the service provider (SP). The client initiates SCIM HTTP requests to a target service provider. To clarify the relationship in terms of identity management, the Identity Provider (IdP) is the SCIM Client and initiates requests to the SP, which is the SCIM Server.
 
-SCIM Server (also called SCIM Service Provider)
+SCIM Server (also referred to as SCIM Service Provider)
 
 > An HTTP web application that provides identity information via the SCIM protocol. To clarify the relationship in terms of identity management, the SP is the SCIM Server and receives the requests from the IdP, which is the SCIM Client.
 
