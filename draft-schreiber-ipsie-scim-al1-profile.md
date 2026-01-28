@@ -28,6 +28,13 @@ organization = "Aujas Cybersecurity"
   [author.address]
   email = "mark.maguire@aujas.com"
 
+[[author]]
+initials = "P."
+surname = "Valarezo"
+fullname = "Pablo Valarezo"
+organization = "Independent"
+  [author.address]
+  email = "pxvalarezo@gmail.com"
 %%%
 
 .# Abstract
@@ -70,13 +77,13 @@ SCIM Client
 
 > An application that uses the SCIM protocol to manage identity data maintained by the service provider (SP). The client initiates SCIM HTTP requests to a target service provider. To clarify the relationship in terms of identity management, the Identity Provider (IdP) is the SCIM Client and initiates requests to the SP, which is the SCIM Server.
 
-SCIM Server (also called SCIM Service Provider)
+SCIM Server (also referred to as SCIM Service Provider)
 
 > An HTTP web application that provides identity information via the SCIM protocol. To clarify the relationship in terms of identity management, the SP is the SCIM Server and receives the requests from the IdP, which is the SCIM Client.
 
 Role
 
-> A set of permissions. A role must be associated with an individual user, and the user gains the associated authorization when they are associated with the role. (include citation to IDPro terminology? -> Flanagan (Editor), H., (2022) “Terminology in the IDPro Body of Knowledge”, IDPro Body of Knowledge 1(12). doi: https://doi.org/10.55621/idpro.41)
+> A set of permissions.  Any user or account within the same role receives the predefined ability to access a resource and/or perform an action.
 
 Identity Service or Identity Provider (IdP)
 
@@ -86,7 +93,7 @@ Application
 
 > Acts as the SCIM server or service provider, hosting SCIM endpoints and processing all provisioning requests.
 
-Note: When SCIM is applied to the context of IPISIE, the Identity Service acts as the SCIM client and the Application acts as the SCIM service provider. The document will use the Role terms below for consistency between across IPSIE Profiles.
+Note: When SCIM is applied to the context of IPSIE, the Identity Service acts as the SCIM client and the Application acts as the SCIM service provider. The document will use the Role terms below for consistency across IPSIE Profiles.
 
 # Profile
 
@@ -94,7 +101,7 @@ Note: When SCIM is applied to the context of IPISIE, the Identity Service acts a
 
 The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of SCIM protocol.
 
-> **Editor's Note:** This section should be expanded and may need to reference the IPSIE Security Level 1 (SL1) profile.
+> **Editor's Note:** This section should be expanded and may need to reference the IPSIE Session Lifecycle 1 (SL1) profile.
 
 The following requirements ensure  consistent and secure handling of access tokens and authorization server configuration:
 
