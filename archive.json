@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-27T02:28:24.832541+00:00",
+  "timestamp": "2026-01-29T02:41:43.970836+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -56,28 +56,30 @@
       "id": "PR_kwDOQ9uW8s6-zMEj",
       "title": "Nomenclature and clarifying updates",
       "url": "https://github.com/jischr/scim-ipsie-profiles/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "PabloValarezo",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Expanding definitions to clarify references to IdP, SP, Client, and Server relationships.\r\n\r\n+ 'Role' definition\r\n\r\nMinor formatting changes",
       "createdAt": "2026-01-22T21:52:52Z",
-      "updatedAt": "2026-01-22T22:36:59Z",
+      "updatedAt": "2026-01-27T16:38:29Z",
       "baseRepository": "jischr/scim-ipsie-profiles",
       "baseRefName": "main",
       "baseRefOid": "ed7bf03b8f4f81acf17d8e89cb4615fb94d72b08",
       "headRepository": "PabloValarezo/scim-ipsie-profiles",
       "headRefName": "suggestions",
       "headRefOid": "3bddcc226e73b830abfcf8d6431ba1dea7f5b6c2",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-27T16:38:29Z",
+      "mergedAt": "2026-01-27T16:38:29Z",
+      "mergedBy": "jischr",
+      "mergeCommit": {
+        "oid": "c289a468cd17d84b1878d9c33494e8c58e1559cb"
+      },
       "comments": [
         {
           "author": "PabloValarezo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "No conflicts with base branch... merging",
           "createdAt": "2026-01-22T21:54:46Z",
           "updatedAt": "2026-01-22T21:54:46Z"
@@ -130,7 +132,7 @@
             "abbreviatedOid": "3bddcc2"
           },
           "author": "PabloValarezo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2026-01-22T22:36:10Z",
@@ -150,7 +152,7 @@
             "abbreviatedOid": "3bddcc2"
           },
           "author": "PabloValarezo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2026-01-22T22:36:59Z",
@@ -165,6 +167,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOQ9uW8s6_u_9F",
+      "title": "Suggestions - Misc corrections, adding author, updating references",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/2",
+      "state": "OPEN",
+      "author": "PabloValarezo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Suggestions - Misc corrections, adding author, updating references",
+      "createdAt": "2026-01-28T01:08:07Z",
+      "updatedAt": "2026-01-28T01:08:07Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "c289a468cd17d84b1878d9c33494e8c58e1559cb",
+      "headRepository": "PabloValarezo/scim-ipsie-profiles",
+      "headRefName": "suggestions",
+      "headRefOid": "74432b498802f092848ac7eb65f3716ea3267255",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
