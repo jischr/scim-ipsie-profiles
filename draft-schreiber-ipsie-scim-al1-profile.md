@@ -125,6 +125,7 @@ The following requirements ensure  consistent and secure handling of access toke
 
 ### General Requirements
 
+* Implementations conforming to this profile MUST also conform to the SCIM 2.0 Interoperability Profile [@!I-D.zollner-scim-interop-profile]. The requirements of this profile supplement and extend those of the SCIM 2.0 Interoperability Profile.
 * The Identity Service SHALL implement the required functionality of a SCIM client as defined in [@!RFC7643] and [@!RFC7644].
 * The Application SHALL implement the required functionality of a SCIM service provider as defined in [@!RFC7643] and [@!RFC7644].
 * All SCIM operations SHALL be authenticated and authorized via OAuth 2.0 as specified in (#authn-authz).
@@ -255,6 +256,7 @@ The Application MUST support the following filter expressions for groups:
 
 * displayName eq \{displayName\}
 * externalId eq \{externalId\}
+* members[value eq \{memberId\}]
 
 #### Update Group (PATCH /Group/{id})
 
@@ -278,7 +280,7 @@ The operations MUST include, at minimum, the set of SCIM capabilities required f
 
 ### Schemas
 
-Application Providers MUST host a /Schemas endpoint to describe the supported schemas, as defined in Section 4 of [@!RFC7644]. There must be a schema for each implemented resource type. Schemas returned by the Application MUST include all implemented attributes and MUST NOT include attributes that are not implemented.
+Application Providers MUST host a /Schemas endpoint to describe the supported schemas, as defined in Section 4 of [@!RFC7644]. There MUST be a schema for each implemented resource type. Schemas returned by the Application MUST include all implemented attributes and MUST NOT include attributes that are not implemented.
 
 # Security Considerations
 
