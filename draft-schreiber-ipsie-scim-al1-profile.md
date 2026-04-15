@@ -125,12 +125,12 @@ The following requirements ensure  consistent and secure handling of access toke
 
 ### General Requirements
 
+* Implementations conforming to this profile MUST also conform to the SCIM 2.0 Interoperability Profile [@!I-D.zollner-scim-interop-profile]. The requirements of this profile supplement and extend those of the SCIM 2.0 Interoperability Profile.
 * The Identity Service SHALL implement the required functionality of a SCIM client as defined in [@!RFC7643] and [@!RFC7644].
 * The Application SHALL implement the required functionality of a SCIM service provider as defined in [@!RFC7643] and [@!RFC7644].
 * All SCIM operations SHALL be authenticated and authorized via OAuth 2.0 as specified in (#authn-authz).
 * Local modifications to Users or Groups in the Application are prohibited.
 * The Application SHALL enforce rate limits on all SCIM endpoints and must respond with appropriate headers, such as "429 Too Many Requests" and "Retry-After," when limits are exceeded.
-* The Identity Service SHALL use the HTTP PATCH method to update resources and SHALL NOT use the HTTP PUT method.
 
 ### User Provisioning
 
@@ -195,7 +195,7 @@ After a user is deleted, the Application MUST allow the creation of a new user w
 
 The Application MUST support retrieval of all users via the SCIM operation GET /Users.
 
-The Application MUST support at least one pagination method and SHOULD avoid returning more than 1,000 users per page. Support for cursor-based pagination by the Application is RECOMMENDED.
+The Application SHOULD avoid returning more than 1,000 users per page. Support for cursor-based pagination by the Application is RECOMMENDED.
 
 #### Get User By ID (GET /Users/{id})
 
@@ -203,9 +203,7 @@ The Application MUST support retrieving a single user by ID via the SCIM operati
 
 #### List Users By Alternate Identifier (GET /Users?)
 
-The Application MUST support the SCIM "filter" query parameter, performed via the SCIM operation: GET /Users?filter={filterExpression}
-
-Application Providers MUST support the following filter expressions:
+The Application MUST support the following filter expressions:
 
 * username eq \{username\}
 * externalId eq \{externalId\}
@@ -239,8 +237,6 @@ The Application MUST allow groups to be created with zero members.
 
 The Application MUST support retrieval of all groups via the SCIM operation GET /Groups.
 
-The Application MUST support the attributes= and excludedAttributes= parameters.
-
 The Identity Service SHOULD include excludedAttributes=members in the HTTP URI when listing all groups.
 
 #### Get Group By ID (GET /Group/{id})
@@ -249,12 +245,11 @@ The Application MUST support retrieving a single group by ID via the SCIM operat
 
 #### List Groups By Alternate Identifier (GET /Groups?)
 
-The Application MUST support the SCIM "filter" query parameter, performed via the SCIM operation: GET /Groups?filter={filterExpression}
-
 The Application MUST support the following filter expressions for groups:
 
 * displayName eq \{displayName\}
 * externalId eq \{externalId\}
+* members[value eq \{memberId\}]
 
 #### Update Group (PATCH /Group/{id})
 
@@ -264,29 +259,12 @@ The Application MUST support the inclusion of at least 50 add or remove operatio
 
 The Identity Service SHOULD compile multiple changes to the "members" attribute into a single PATCH request.
 
-## Metadata Endpoints
-
-### ResourceTypes
-
-Application MUST host a /ResourceTypes endpoint, as defined in Section 4 of [@!RFC7644].
-
-### ServiceProviderConfig
-
-Application Providers MUST host a /ServiceProviderConfig endpoint to describe the operations they support, as defined in Section 4 of [@!RFC7644]
-
-The operations MUST include, at minimum, the set of SCIM capabilities required for compatibility with this IPSIE profile.
-
-### Schemas
-
-Application Providers MUST host a /Schemas endpoint to describe the supported schemas, as defined in Section 4 of [@!RFC7644]. There must be a schema for each implemented resource type. Schemas returned by the Application MUST include all implemented attributes and MUST NOT include attributes that are not implemented.
-
 # Security Considerations
 
 For SCIM security considerations, see [@!RFC7643] and [@!RFC7644]
 
 Additionally, the following requirements are included to address security considerations.
 
-* **Transport Security**: All endpoints SHALL enforce TLS 1.2 or later with strong cipher suites and certificate validation.
 * **Error Handling**: Error responses SHALL use the SCIM error format and SHALL NOT leak internal details.
 * **Replay Resistance**: Access tokens SHALL expire and nonces SHALL be validated to prevent replay.
 * **Auditing**: All SCIM requests resulting in the creation, deletion, or modification of a SCIM resource SHALL be logged for audit and troubleshooting.
