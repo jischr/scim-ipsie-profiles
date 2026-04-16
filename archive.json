@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-26T02:45:00.608092+00:00",
+  "timestamp": "2026-04-16T03:35:54.737312+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -570,6 +570,42 @@
           ]
         }
       ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOQ9uW8s7SdpqA",
+      "title": "scim interop feedback al1 migration",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/14",
+      "state": "MERGED",
+      "author": "Zollnerd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- Adds a normative conformance requirement: AL1 implementations MUST also\r\n  conform to `draft-zollner-scim-interop-profile`, inheriting its requirements\r\n  for endpoint structure, resource lifecycle, discovery endpoints, PATCH/PUT\r\n  behavior, TLS, and filtering.\r\n\r\n- Removes requirements from AL1 now fully covered by that reference:\r\n  PATCH/PUT restriction, pagination MUST, general filter support statements,\r\n  metadata endpoint requirements, TLS minimum version,\r\n  `attributes=`/`excludedAttributes=` MUST.\r\n\r\n- Retains IPSIE-specific requirements: OAuth 2.0 with JWT client auth,\r\n  User/Group attribute requirements, credential prohibition, deactivation\r\n  behavior and timelines, cursor pagination RECOMMENDED, 1,000-result SHOULD\r\n  limit, `excludedAttributes=members` SHOULD guidance for group listing.\r\n\r\n- Adds `members[value eq {memberId}]` to required Group filter expressions.",
+      "createdAt": "2026-04-14T23:02:45Z",
+      "updatedAt": "2026-04-15T19:02:48Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "f824c61aafd9586a06e39d7e325062345870963a",
+      "headRepository": "Zollnerd/scim-ipsie-profiles",
+      "headRefName": "dz-interop-feedback-al1-migration",
+      "headRefOid": "853603d0f57fcdd7200a5a74af7f578732231221",
+      "closedAt": "2026-04-15T19:02:48Z",
+      "mergedAt": "2026-04-15T19:02:48Z",
+      "mergedBy": "jischr",
+      "mergeCommit": {
+        "oid": "a3cd43bc1521d6647b544c7e99829d908f2690d9"
+      },
+      "comments": [
+        {
+          "author": "Zollnerd",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@jischr As discussed last week, changes to reduce duplication across this draft and the SCIM interop profile.  ",
+          "createdAt": "2026-04-14T23:03:41Z",
+          "updatedAt": "2026-04-14T23:03:41Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
