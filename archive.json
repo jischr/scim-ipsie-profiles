@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-16T03:35:54.737312+00:00",
+  "timestamp": "2026-05-12T03:55:32.070163+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -605,6 +605,32 @@
           "updatedAt": "2026-04-14T23:03:41Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOQ9uW8s7abGt0",
+      "title": "Rework levels into AL-X structure",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/15",
+      "state": "OPEN",
+      "author": "jischr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-05-11T20:58:38Z",
+      "updatedAt": "2026-05-11T21:00:10Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "a3cd43bc1521d6647b544c7e99829d908f2690d9",
+      "headRepository": "jischr/scim-ipsie-profiles",
+      "headRefName": "rework-levels",
+      "headRefOid": "17ba1215e93a95f11f3dc026f5c673d873affc41",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
