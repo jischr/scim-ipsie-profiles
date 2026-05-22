@@ -1,6 +1,6 @@
 %%%
-title = "IPSIE AL1 SCIM 2.0 Profile"
-abbrev = "IPSIE AL1 SCIM"
+title = "IPSIE SCIM 2.0 Profile"
+abbrev = "IPSIE SCIM"
 ipr = "trust200902"
 area = "Applications and Real-Time"
 workgroup = "IPSIE"
@@ -8,7 +8,7 @@ keyword = ["scim", "ipsie", "provisioning", "identity", "oauth"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-schreiber-ipsie-scim-al1-profile-latest"
+value = "draft-schreiber-ipsie-scim-profile-latest"
 stream = "IETF"
 status = "informational"
 
@@ -47,7 +47,7 @@ organization = "Independent"
 
 .# Abstract
 
-This document defines a profile for SCIM 2.0 to meet the security and interoperability requirements for identity lifecycle management within enterprises. Within the context of SCIM, The profile establishes requirements for provisioning, account management, client authentication, and identity synchronization.
+This document defines a profile for SCIM 2.0 to meet the security and interoperability requirements for identity lifecycle management within enterprises. Within the context of SCIM, the profile establishes requirements for provisioning, account management, client authentication, and identity synchronization across three Account Lifecycle assurance levels: AL1 (User Deprovisioning), AL2 (User and Group Management), and AL3 (Role Management).
 
 {mainmatter}
 
@@ -60,7 +60,15 @@ Source for this draft and an issue tracker can be found at
 
 # Introduction
 
-This document defines the IPSIE Account Lifecycle 1 (AL1) Profile for SCIM 2.0. It provides a clear reference for SCIM deployments that require a well-defined security baseline meeting best practices for interoperable enterprise identity management.
+This document defines the IPSIE SCIM 2.0 Profile for enterprise identity lifecycle management. It provides a clear reference for SCIM deployments that require a well-defined security baseline meeting best practices for interoperable enterprise identity management.
+
+The profile is organized according to the three IPSIE Account Lifecycle assurance levels as defined in the IPSIE Levels specification:
+
+* **AL1 - User Deprovisioning**: The Application deprovisions users at the request of the Identity Service. This includes account deactivation and deletion.
+* **AL2 - User and Group Management**: The Identity Service synchronizes user provisioning and group membership with the Application. The Application accepts creation and updates of user accounts and maps group claims to application roles and capabilities.
+* **AL3 - Role Management**: The Application exposes its available roles to the Identity Service, enabling centralized role assignment and synchronization.
+
+Each level is cumulative: AL2 requirements extend AL1, and AL3 requirements extend AL2.
 
 The profile addresses critical aspects of secure identity management, with particular emphasis on:
 
@@ -103,7 +111,9 @@ Application
 
 Note: When SCIM is applied to the context of IPSIE, the Identity Service acts as the SCIM client and the Application acts as the SCIM service provider. The document will use the Role terms below for consistency across IPSIE Profiles.
 
-# Profile
+# Shared Prerequisites
+
+The following requirements apply to all assurance levels defined in this profile.
 
 ## Authentication and Authorization {#authn-authz}
 
@@ -111,19 +121,17 @@ The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authenti
 
 > **Editor's Note:** This section should be expanded and may need to reference the IPSIE Session Lifecycle 1 (SL1) profile.
 
-The following requirements ensure  consistent and secure handling of access tokens and authorization server configuration:
+The following requirements ensure consistent and secure handling of access tokens and authorization server configuration:
 
 * OAuth 2.0 interactions MUST use the client_credentials grant type with JWT Client Authentication as defined in [@!RFC7523] section 2.2.
 * The Identity Provider SHALL acquire an access token and present that token in the {Authorization: Bearer} header on all subsequent SCIM requests.
 * The Application's OAuth 2.0 authorization server SHALL NOT support inclusion of client credentials in the HTTP request-body
 * The token MUST contain a "token_endpoint" value which is the URL of the Identity Service's OAuth 2.0 token endpoint.
-* The Acess Token MUST include the "scim" scope and not grant broader permissions.
+* The Access Token MUST include the "scim" scope and not grant broader permissions.
 * All Authorization Server parameters SHOULD be discovered from OAuth Authorization Server metadata as defined in [@!RFC8414].
 * The Identity Service SHOULD expose a jwks_uri to allow the Application to perform signature verification
 
 ## SCIM Interoperability Requirements
-
-### General Requirements
 
 * Implementations conforming to this profile MUST also conform to the SCIM 2.0 Interoperability Profile [@!I-D.zollner-scim-interop-profile]. The requirements of this profile supplement and extend those of the SCIM 2.0 Interoperability Profile.
 * The Identity Service SHALL implement the required functionality of a SCIM client as defined in [@!RFC7643] and [@!RFC7644].
@@ -132,39 +140,11 @@ The following requirements ensure  consistent and secure handling of access toke
 * Local modifications to Users or Groups in the Application are prohibited.
 * The Application SHALL enforce rate limits on all SCIM endpoints and must respond with appropriate headers, such as "429 Too Many Requests" and "Retry-After," when limits are exceeded.
 
-### User Provisioning
+# AL1: User Deprovisioning
 
-Requirements for user provisioning operations are defined in this section.
+AL1 requires the Application to deprovision users at the request of the Identity Service. The Identity Service can suspend, archive, delete, or otherwise deprovision accounts at the Application.
 
-#### Schema
-
-The Application MUST include the following attributes in the User schema:
-
-* userName
-* displayName
-* active
-
-Additionally, the "externalId" attribute defined as optional in the "common" resource schema in [@!RFC7643] MUST be supported by the Application.
-
-#### Passwords and other credentials
-
-The Application MUST NOT support the "password" attribute.
-
-The Identity Service MUST NOT include the "password" attribute in any SCIM requests.
-
-A user resource may have various credentials or similar data associated with them. This includes passwords, password hashes, private keys, and multi-factor authentication data such as Time-Based One-Time Password (TOTP) seeds. The Application MUST NOT define attributes containing credentials in custom schemas. The Identity Service MUST NOT send values for user credentials in any SCIM requests.
-
-> **DZ note** Set the credential-related requirements as aggressively restrictive for now, can define any exceptions or other rules later after discussion.
-
-#### Create User (POST /Users)
-
-The Identity Service and the Application MUST support user creation via POST /Users.
-
-#### Update User (PATCH /Users/{id})
-
-The Identity Service and the Application MUST support updating a user's attribute values via the SCIM operation PATCH /Users/{id}.
-
-#### Deactivate or Reactivate User (PATCH /Users/{id})
+## Deactivate or Reactivate User (PATCH /Users/{id})
 
 Changes to the user activation status, such deactivation and reactivation, are performed by the SCIM operation PATCH /Users/{id}
 
@@ -183,7 +163,7 @@ When a user account is deactivated, all access mechanisms and authorizations ass
 
 The Application MUST allow reactivation of a deactivated user.
 
-#### Delete User (DELETE /Users/{id})
+## Delete User (DELETE /Users/{id})
 
 Applications MAY allow users to be deleted via the SCIM operation DELETE /Users/{id}.
 
@@ -191,17 +171,53 @@ After a user is deleted, the Application MUST allow the creation of a new user w
 
 > **Editor's Note:** Need to clarify implications for maintaining user data and avoiding conflicts when recreating users with the same username.
 
-#### Get All Users (GET /Users)
+# AL2: User and Group Management
+
+AL2 extends AL1. In addition to deprovisioning, the Identity Service synchronizes user provisioning and group membership with the Application. The Application MUST accept creation and updates of user accounts from the Identity Service and MUST prohibit local account creation for users managed by the Identity Service. The Application MUST support mapping Identity Service groups to local Application roles and capabilities.
+
+## User Provisioning
+
+Requirements for user provisioning operations are defined in this section.
+
+### Schema
+
+The Application MUST include the following attributes in the User schema:
+
+* userName
+* displayName
+* active
+
+Additionally, the "externalId" attribute defined as optional in the "common" resource schema in [@!RFC7643] MUST be supported by the Application.
+
+### Passwords and other credentials
+
+The Application MUST NOT support the "password" attribute.
+
+The Identity Service MUST NOT include the "password" attribute in any SCIM requests.
+
+A user resource may have various credentials or similar data associated with them. This includes passwords, password hashes, private keys, and multi-factor authentication data such as Time-Based One-Time Password (TOTP) seeds. The Application MUST NOT define attributes containing credentials in custom schemas. The Identity Service MUST NOT send values for user credentials in any SCIM requests.
+
+> **DZ note** Set the credential-related requirements as aggressively restrictive for now, can define any exceptions or other rules later after discussion.
+
+### Create User (POST /Users)
+
+The Identity Service and the Application MUST support user creation via POST /Users.
+
+### Update User (PATCH /Users/{id})
+
+The Identity Service and the Application MUST support updating a user's attribute values via the SCIM operation PATCH /Users/{id}.
+
+### Get All Users (GET /Users)
 
 The Application MUST support retrieval of all users via the SCIM operation GET /Users.
 
 The Application SHOULD avoid returning more than 1,000 users per page. Support for cursor-based pagination by the Application is RECOMMENDED.
 
-#### Get User By ID (GET /Users/{id})
+### Get User By ID (GET /Users/{id})
 
 The Application MUST support retrieving a single user by ID via the SCIM operation GET /Users/{id}.
 
-#### List Users By Alternate Identifier (GET /Users?)
+### List Users By Alternate Identifier (GET /Users?)
 
 The Application MUST support the following filter expressions:
 
@@ -210,11 +226,11 @@ The Application MUST support the following filter expressions:
 * emails[value eq \{email\}]
 * emails[type eq "work" and value eq \{email\}]
 
-### Group Provisioning Operations
+## Group Provisioning Operations
 
 Requirements for group provisioning operations are defined in this section. The Application MAY implement support for groups and MUST follow the below requirements if it does.
 
-#### Schema
+### Schema
 
 The Application MUST include the following attributes in the Group schema:
 
@@ -227,23 +243,23 @@ The Application SHOULD NOT allow multiple groups to have the same value for the 
 
 The Identity Service SHOULD use a unique value for the "displayName" attribute.
 
-#### Create Group (POST /Groups)
+### Create Group (POST /Groups)
 
 The Identity Service and the Application MUST support group creation via POST /Groups.
 
 The Application MUST allow groups to be created with zero members.
 
-#### Get All Groups (GET /Groups)
+### Get All Groups (GET /Groups)
 
 The Application MUST support retrieval of all groups via the SCIM operation GET /Groups.
 
 The Identity Service SHOULD include excludedAttributes=members in the HTTP URI when listing all groups.
 
-#### Get Group By ID (GET /Group/{id})
+### Get Group By ID (GET /Group/{id})
 
 The Application MUST support retrieving a single group by ID via the SCIM operation GET /Groups/{id}.
 
-#### List Groups By Alternate Identifier (GET /Groups?)
+### List Groups By Alternate Identifier (GET /Groups?)
 
 The Application MUST support the following filter expressions for groups:
 
@@ -251,13 +267,19 @@ The Application MUST support the following filter expressions for groups:
 * externalId eq \{externalId\}
 * members[value eq \{memberId\}]
 
-#### Update Group (PATCH /Group/{id})
+### Update Group (PATCH /Group/{id})
 
 The Identity Service and the Application MUST support updating a group's attribute values via the SCIM operation PATCH /Groups/{id}.
 
 The Application MUST support the inclusion of at least 50 add or remove operations on the "members" attribute in a single PATCH request.
 
 The Identity Service SHOULD compile multiple changes to the "members" attribute into a single PATCH request.
+
+# AL3: Role Management
+
+AL3 extends AL2. The Application exposes its available roles to the Identity Service, enabling centralized role assignment and synchronization. The Identity Service maps Application roles to users and synchronizes those assignments back to the Application.
+
+> **Editor's Note:** AL3 requirements are not yet defined in this draft. Requirements will be added in a future revision.
 
 # Security Considerations
 
@@ -276,18 +298,19 @@ This document has no IANA actions.
 
 # Compliance Statement
 
-Implementation of all mandatory requirements in this profile will result in a SCIM 2.0 deployment that satisfies IPSIE Identity Lifecycle Level 1 (IL1). Specifically:
+Implementation of all mandatory requirements at each level results in a SCIM 2.0 deployment satisfying the corresponding IPSIE Account Lifecycle assurance level.
 
-* **Identity Service (SCIM client)**
-  * SHALL initiate all CRUD operations for Users and Groups.
-  * SHALL adhere to the security considerations above.
+* **AL1 (User Deprovisioning)**
+  * **Identity Service (SCIM client)**: SHALL initiate deactivation and deletion operations for Users and SHALL adhere to the security considerations above.
+  * **Application (SCIM service provider)**: SHALL support PATCH /Users/{id} for deactivation and reactivation, SHALL support DELETE /Users/{id}, SHALL prevent local modifications outside of SCIM, SHALL enforce OAuth 2.0 JWT Profile for Authentication [@!RFC7523], and SHALL adhere to the security considerations above.
 
-* **Application (SCIM service provider)**
-  * SHALL host all SCIM endpoints with full support for User provisioning, and if supported, Group provisioning.
-  * SHALL prevent local modifications outside of SCIM.
-  * SHALL enforce OAuth 2.0 JWT Profile for Authentication [@!RFC7523].
-  * SHALL adhere to the security considerations above.
+* **AL2 (User and Group Management)** — requires AL1
+  * **Identity Service (SCIM client)**: SHALL initiate all CRUD operations for Users and Groups and SHALL adhere to the security considerations above.
+  * **Application (SCIM service provider)**: SHALL host all SCIM endpoints with full support for User provisioning, and if supported, Group provisioning; SHALL prevent local modifications outside of SCIM; SHALL enforce OAuth 2.0 JWT Profile for Authentication [@!RFC7523]; and SHALL adhere to the security considerations above.
 
-By conforming to this profile, implementations will achieve a consistent, secure, and interoperable baseline for enterprise identity lifecycle management.
+* **AL3 (Role Management)** — requires AL2
+  * Requirements to be defined in a future revision.
+
+By conforming to this profile at the appropriate level, implementations will achieve a consistent, secure, and interoperable baseline for enterprise identity lifecycle management.
 
 {backmatter}
