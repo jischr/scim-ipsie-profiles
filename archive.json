@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-12T03:55:32.070163+00:00",
+  "timestamp": "2026-05-24T04:18:19.227342+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -79,16 +79,24 @@
       "id": "I_kwDOQ9uW8s7pgplh",
       "title": "IPSIE \"roles\" vs SCIM \"groups\" statement incorrect",
       "url": "https://github.com/jischr/scim-ipsie-profiles/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Zollnerd",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md#L197-L198\n\nSCIM has three distinct concepts currently - Groups, which are a resource type alongside Users, as well as attributes on the User resource \"roles\" and \"entitlements\". There are SCIM-enabled applications that support the user.roles attribute and do not support the group resource type. \n\nWe probably need to figure out what the actual protocol-agnostic requirement is and then map it into SCIM requirements.\n\n<!-- Edit the body of your new issue then click the \u2713 \"Create Issue\" button in the top right of the editor. The first line will be the issue title. Assignees and Labels follow after a blank line. Leave an empty line before beginning the body of the issue. -->",
       "createdAt": "2026-02-09T18:34:38Z",
-      "updatedAt": "2026-02-09T18:34:38Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-22T20:55:26Z",
+      "closedAt": "2026-05-22T20:55:26Z",
+      "comments": [
+        {
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "body": "@Zollnerd did this oen",
+          "createdAt": "2026-05-22T20:55:26Z",
+          "updatedAt": "2026-05-22T20:55:26Z"
+        }
+      ]
     },
     {
       "number": 5,
@@ -97,12 +105,12 @@
       "url": "https://github.com/jischr/scim-ipsie-profiles/issues/5",
       "state": "OPEN",
       "author": "Zollnerd",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md?plain=1#L239\n\nProbably related to https://github.com/jischr/scim-ipsie-profiles/issues/4\n\nNot all apps have a need to support groups. If they support something like \"roles\" or \"entitlements\" then that provides another way for the IDP to view and manage access in the app. Groups have a downside for entitlement granting into apps as well, as the SCIM group resource created by the client in the app can have any name (displayName is an arbitrary label) and what permissions are assigned to the group (and inherited by its members) is generally not visible to the IDP. ",
       "createdAt": "2026-02-09T18:43:41Z",
-      "updatedAt": "2026-02-18T18:54:33Z",
+      "updatedAt": "2026-05-22T20:57:46Z",
       "closedAt": null,
       "comments": [
         {
@@ -114,10 +122,17 @@
         },
         {
           "author": "Zollnerd",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> Should the profile distinguish between Groups as organizational units the IdP owns and pushes, versus Application-native roles the IdP can read but doesn't manage?\n\nSCIM has both of these concepts with the same names that you used here, and both are regularly in use with current SCIM implementations, so I think we should address both of them separately. I'm in favor of referring to them using the existing SCIM terminology, and if necessary, we can add items to the terminology section near the beginning of the document.\n\n> first, first is aroudn SPs not needing groups. could be resolved with:\n> \n\n- > The IdP MUST support Group operations\n\n- > The SP MAY support Groups if it aligns with their use case\n\nI think the second option is the correct one. Virtually everything in SCIM is optional when it comes to the schema and what resources are supported, and not all applications have need for groups and/or roles. There's an argument that having some way for the IDP to see and/or manage entitlement grants in the application improves security posture. If I were to try to write a SCIM AL* requirement to capture that, it would probably be a requirement for the SP to support at least one of a list of methods that help to achieve that. \n\nGiven the multiple options that are available, IMO we should provide requirements that apply if the application supports one of those features. I'm not sure if we should be mandating either of them at AL1, though - would need to think about that more and discuss with a wider group. ",
           "createdAt": "2026-02-18T18:52:40Z",
           "updatedAt": "2026-02-18T18:54:33Z"
+        },
+        {
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "body": "If you're implementing Roles, \nDo these things\n\nIf you're implementing Groups,\nDo these things\n\nIf you support both...?\n",
+          "createdAt": "2026-05-22T20:57:46Z",
+          "updatedAt": "2026-05-22T20:57:46Z"
         }
       ]
     },
@@ -126,15 +141,15 @@
       "id": "I_kwDOQ9uW8s7phLri",
       "title": "All \"provisioning actions\" must be logged - clarify \"provisioning actions\"",
       "url": "https://github.com/jischr/scim-ipsie-profiles/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Zollnerd",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md?plain=1#L260\n\nWe should clearly define \"provisioning actions\" - specifically, if it only covers modifications, or if reads are also expected to be logged. I can't think of any SCIM SP/IDP that logs each read request, and I think the definition should be that \"provisioning actions\" == create/update/delete (modifications) only",
       "createdAt": "2026-02-09T19:27:35Z",
-      "updatedAt": "2026-02-18T14:52:55Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-22T20:59:44Z",
+      "closedAt": "2026-05-22T20:59:44Z",
       "comments": [
         {
           "author": "jischr",
@@ -142,6 +157,13 @@
           "body": "yes, in agreement for this.",
           "createdAt": "2026-02-18T14:52:54Z",
           "updatedAt": "2026-02-18T14:52:54Z"
+        },
+        {
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "body": "this is completed",
+          "createdAt": "2026-05-22T20:59:44Z",
+          "updatedAt": "2026-05-22T20:59:44Z"
         }
       ]
     },
@@ -150,15 +172,15 @@
       "id": "I_kwDOQ9uW8s7phQ8H",
       "title": "Explicitly disallow SCIM SPs from supporting the user \"password\" attribute",
       "url": "https://github.com/jischr/scim-ipsie-profiles/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Zollnerd",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md?plain=1#L117\n\nNot sure where to put the requirement, but I think we should add one that explicitly disallows SCIM SPs from supporting the user \"password\" attribute. Federation/SSO should be required, which means that the \"password\" attribute on the User resource shouldn't be needed. There are legacy apps that may require passwords to be synced into them, but those won't be IPSIE SL* compliant and similarly shouldn't be AL* compliant, IMO. \n\nI'm not sure if a requirement is needed or useful on the IDP side - the IDP's client/provisioning service will always support a superset of features compared to what any single application may use, and an IDP's SCIM client supporting sending the user \"password\" attribute doesn't matter if it isn't being used with the SCIM SP. I can think of some possible implementation mistakes that could lead to security issues, such as mapping IDP's user.password to any random attribute on the application's end, and then using that to discover the user's password in the IDP - but my gut is that that isn't in IPSIE's scope.",
       "createdAt": "2026-02-09T19:34:52Z",
-      "updatedAt": "2026-02-18T19:13:28Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-22T20:58:10Z",
+      "closedAt": "2026-05-22T20:58:10Z",
       "comments": [
         {
           "author": "jischr",
@@ -169,10 +191,17 @@
         },
         {
           "author": "Zollnerd",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> Should the Application reject the entire request if password is included, or only reject the password attribute itself? \n> For example, if a POST /Users includes password alongside otherwise valid attributes, does the whole create fail, or should the Application create the user and ignore/reject only that attribute?\n\nThe object's schema is defined by the application, so the most critical requirement is going to be that the application MUST not support the password attribute. \n\nRFC 7644 gives pretty broad discretion to the SCIM service provider to alter or ignore parts of incoming requests - both what attributes are included, and their values.  In practice, some service providers will silently drop unsupported attributes on a POST, and others will return an error due to the inclusion of unsupported attributes. \n\n> Does this extend to extension schemas?\n> An Application could technically accept password-equivalent credential material under a custom schema namespace, and the current language wouldn\u2019t catch that.\n\n> Is the intent to prohibit only the core SCIM User.password attribute, or is the intention requirement broader i.e., prohibiting any attribute that carries credential material (hashed passwords, MFA seeds, recovery codes, etc.)?\n\nGood catch. RFC 7643 section 3.3 has a normative requirement related to this:\n`_Schema extensions SHOULD avoid redefining any attributes defined in this specification and SHOULD follow conventions defined in this specification._`\n\nThat SHOULD is a problem, as is the difference in interpretation that various people may have when it comes to whether or not an extension is redefining attributes defined in RFC 7643.  \n\nWhen I created this issue, I was thinking only of user.password, but I think there's value in determining what is allowed, and for the things that are allowed, what the rules are.  \n\nI'll add language around user.password to the current edits I'm working on, and I'll create a new issue to track the other scenarios.",
           "createdAt": "2026-02-18T19:13:27Z",
           "updatedAt": "2026-02-18T19:13:27Z"
+        },
+        {
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "body": "this is done",
+          "createdAt": "2026-05-22T20:58:10Z",
+          "updatedAt": "2026-05-22T20:58:10Z"
         }
       ]
     },
@@ -181,15 +210,15 @@
       "id": "I_kwDOQ9uW8s7phTy6",
       "title": "Add an explicit requirement for IDPs to NOT use PUT to update groups",
       "url": "https://github.com/jischr/scim-ipsie-profiles/issues/8",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Zollnerd",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md?plain=1#L185\n\nPUT is sketch enough while updating users, but it's an outrageously bad idea for groups. AL1 already says that PATCH must be supported, but given the SCIM protocol spec says support for PUT is a global requirement for updateable resources, I think an explicit SHALL NOT would be good. ",
       "createdAt": "2026-02-09T19:39:20Z",
-      "updatedAt": "2026-02-19T02:13:55Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-22T20:58:26Z",
+      "closedAt": "2026-05-22T20:58:26Z",
       "comments": [
         {
           "author": "jischr",
@@ -197,6 +226,13 @@
           "body": "yes i'm in support of explicitly adding the shall not. thanks for bringing this one up",
           "createdAt": "2026-02-19T02:13:55Z",
           "updatedAt": "2026-02-19T02:13:55Z"
+        },
+        {
+          "author": "jischr",
+          "authorAssociation": "OWNER",
+          "body": "Done.",
+          "createdAt": "2026-05-22T20:58:26Z",
+          "updatedAt": "2026-05-22T20:58:26Z"
         }
       ]
     },
@@ -285,6 +321,38 @@
       "body": "https://github.com/jischr/scim-ipsie-profiles/blob/c289a468cd17d84b1878d9c33494e8c58e1559cb/draft-schreiber-ipsie-scim-al1-profile.md?plain=1#L153\n\nWe should add wording to permit an application to only allow reactivation of a disabled user if certain app-specific conditions are met such as licenses being available, security risk events being addressed, etc.",
       "createdAt": "2026-02-17T21:19:01Z",
       "updatedAt": "2026-02-17T21:19:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOQ9uW8s8AAAABDIwv7Q",
+      "title": "Remove \"Application MUST allow the creation of a new user with the same username.\"",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/16",
+      "state": "OPEN",
+      "author": "jischr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "**Existing Text:**\n> Delete User (DELETE /Users/{id})\n> Applications MAY allow users to be deleted via the SCIM operation DELETE /Users/{id}.\n\n> After a user is deleted, the Application MUST allow the creation of a new user with the same username.\n\n> Editor's Note: Need to clarify implications for maintaining user data and avoiding conflicts when recreating users with the same username.\n\n**Remove:**\n- \"Application MUST allow the creation of a new user with the same username.\" \n\n\nRef:\n- https://datatracker.ietf.org/doc/html/rfc7644#section-3.6",
+      "createdAt": "2026-05-22T20:40:32Z",
+      "updatedAt": "2026-05-22T20:40:32Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOQ9uW8s8AAAABDIzvZQ",
+      "title": "Decide whether or not be explicit about content type",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/17",
+      "state": "OPEN",
+      "author": "jischr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://datatracker.ietf.org/doc/html/rfc7644#section-3.8\n\nJeff mentioned that he's seen json+patch.\n\nDo we need to be explicit about content type?",
+      "createdAt": "2026-05-22T20:51:54Z",
+      "updatedAt": "2026-05-22T20:51:54Z",
       "closedAt": null,
       "comments": []
     }
@@ -612,24 +680,26 @@
       "id": "PR_kwDOQ9uW8s7abGt0",
       "title": "Rework levels into AL-X structure",
       "url": "https://github.com/jischr/scim-ipsie-profiles/pull/15",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "jischr",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-05-11T20:58:38Z",
-      "updatedAt": "2026-05-11T21:00:10Z",
+      "updatedAt": "2026-05-22T20:32:36Z",
       "baseRepository": "jischr/scim-ipsie-profiles",
       "baseRefName": "main",
       "baseRefOid": "a3cd43bc1521d6647b544c7e99829d908f2690d9",
       "headRepository": "jischr/scim-ipsie-profiles",
       "headRefName": "rework-levels",
       "headRefOid": "17ba1215e93a95f11f3dc026f5c673d873affc41",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-05-22T20:32:35Z",
+      "mergedAt": "2026-05-22T20:32:35Z",
+      "mergedBy": "jischr",
+      "mergeCommit": {
+        "oid": "10fd71cb885f693de37e082c07fd3ed373f86aae"
+      },
       "comments": [],
       "reviews": []
     }
