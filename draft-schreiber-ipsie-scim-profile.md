@@ -21,14 +21,6 @@ organization = "SGNL"
   email = "jen@sgnl.ai"
 
 [[author]]
-initials = "M."
-surname = "Maguire"
-fullname = "Mark Maguire"
-organization = "Aujas Cybersecurity"
-  [author.address]
-  email = "mark.maguire@aujas.com"
-
-[[author]]
 initials = "D."
 surname = "Zollner"
 fullname = "Danny Zollner"
@@ -36,13 +28,6 @@ organization = "Okta"
  [author.address]
  email = "danny.zollner@okta.com"
 
-[[author]]
-initials = "P."
-surname = "Valarezo"
-fullname = "Pablo Valarezo"
-organization = "Independent"
-  [author.address]
-  email = "pxvalarezo@gmail.com"
 %%%
 
 .# Abstract
