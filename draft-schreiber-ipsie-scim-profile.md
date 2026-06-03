@@ -142,10 +142,10 @@ The following requirements ensure consistent and secure handling of access token
 
 * The Application MUST enforce rate limits on all SCIM endpoints and must respond with appropriate headers, such as "429 Too Many Requests" and "Retry-After," when limits are exceeded.
 * The Application MUST support at least 25 SCIM requests per second. This requirement is per-tenant for multi-tenant (B2B SaaS, etc.) applications.
-* The Application and the Identity Service MUST support the SCIM /Bulk endpoint defined in [@!RFC7643] section 3.7. 
-* The Application MUST support PATCH requests that update multiple attributes within a single request. 
+* The Application and the Identity Service MUST support the SCIM /Bulk endpoint defined in [@!RFC7643] section 3.7.
+* The Application MUST support PATCH requests that update multiple attributes within a single request.
 * The Identity Service SHOULD optimize its SCIM request logic to minimize the number of SCIM requests made for each resource in a short period of time. As an example, a single PATCH request containing multiple attribute updates should be made rather than updating each attribute in a separate PATCH request.
-* The Identity Service SHOULD use the SCIM /Bulk endpoint when it plans to make changes to more than 100 SCIM resources in a 5 minute period. 
+* The Identity Service SHOULD use the SCIM /Bulk endpoint when it plans to make changes to more than 100 SCIM resources in a 5 minute period.
 
 # AL1: User Deprovisioning
 
