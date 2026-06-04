@@ -4,12 +4,8 @@
 
 IPSIE                                                       J. Schreiber
 Internet-Draft                                                      SGNL
-Intended status: Informational                                M. Maguire
-Expires: 6 December 2026                             Aujas Cybersecurity
-                                                              D. Zollner
-                                                                    Okta
-                                                             P. Valarezo
-                                                             Independent
+Intended status: Informational                                D. Zollner
+Expires: 6 December 2026                                            Okta
                                                              4 June 2026
 
 
@@ -567,16 +563,6 @@ Authors' Addresses
    Email: jen@sgnl.ai
 
 
-   Mark Maguire
-   Aujas Cybersecurity
-   Email: mark.maguire@aujas.com
-
-
    Danny Zollner
    Okta
    Email: danny.zollner@okta.com
-
-
-   Pablo Valarezo
-   Independent
-   Email: pxvalarezo@gmail.com
