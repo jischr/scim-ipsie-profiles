@@ -1,6 +1,6 @@
 # SCIM IPSIE Profiles
 
-This is the working area for the IETF Internet-Draft, "IPSIE AL1 SCIM 2.0 Profile".
+This is the working area for the IETF Internet-Draft, "IPSIE Account Lifecycle (AL) SCIM 2.0 Profile".
 
 * [Editor's Copy](https://jischr.github.io/scim-ipsie-profiles/draft-schreiber-ipsie-scim-al1-profile.html)
 
