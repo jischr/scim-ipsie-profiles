@@ -136,9 +136,16 @@ The following requirements ensure consistent and secure handling of access token
 * Implementations conforming to this profile MUST also conform to the SCIM 2.0 Interoperability Profile [@!I-D.zollner-scim-interop-profile]. The requirements of this profile supplement and extend those of the SCIM 2.0 Interoperability Profile.
 * The Identity Service SHALL implement the required functionality of a SCIM client as defined in [@!RFC7643] and [@!RFC7644].
 * The Application SHALL implement the required functionality of a SCIM service provider as defined in [@!RFC7643] and [@!RFC7644].
-* All SCIM operations SHALL be authenticated and authorized via OAuth 2.0 as specified in (#authn-authz).
 * Local modifications to Users or Groups in the Application are prohibited.
-* The Application SHALL enforce rate limits on all SCIM endpoints and must respond with appropriate headers, such as "429 Too Many Requests" and "Retry-After," when limits are exceeded.
+
+## Performance and Efficiency
+
+* The Application MUST enforce rate limits on all SCIM endpoints and must respond with appropriate headers, such as "429 Too Many Requests" and "Retry-After," when limits are exceeded.
+* The Application MUST support at least 25 SCIM requests per second. This requirement is per-tenant for multi-tenant (B2B SaaS, etc.) applications.
+* The Application and the Identity Service MUST support the SCIM /Bulk endpoint defined in [@!RFC7643] section 3.7.
+* The Application MUST support PATCH requests that update multiple attributes within a single request.
+* The Identity Service SHOULD optimize its SCIM request logic to minimize the number of SCIM requests made for each resource in a short period of time. As an example, a single PATCH request containing multiple attribute updates should be made rather than updating each attribute in a separate PATCH request.
+* The Identity Service SHOULD use the SCIM /Bulk endpoint when it plans to make changes to more than 100 SCIM resources in a 5 minute period.
 
 # AL1: User Deprovisioning
 
@@ -196,8 +203,6 @@ The Application MUST NOT support the "password" attribute.
 The Identity Service MUST NOT include the "password" attribute in any SCIM requests.
 
 A user resource may have various credentials or similar data associated with them. This includes passwords, password hashes, private keys, and multi-factor authentication data such as Time-Based One-Time Password (TOTP) seeds. The Application MUST NOT define attributes containing credentials in custom schemas. The Identity Service MUST NOT send values for user credentials in any SCIM requests.
-
-> **DZ note** Set the credential-related requirements as aggressively restrictive for now, can define any exceptions or other rules later after discussion.
 
 ### Create User (POST /Users)
 
