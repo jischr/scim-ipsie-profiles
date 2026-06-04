@@ -5,12 +5,12 @@
 IPSIE                                                       J. Schreiber
 Internet-Draft                                                      SGNL
 Intended status: Informational                                M. Maguire
-Expires: 23 November 2026                            Aujas Cybersecurity
+Expires: 6 December 2026                             Aujas Cybersecurity
                                                               D. Zollner
                                                                     Okta
                                                              P. Valarezo
                                                              Independent
-                                                             22 May 2026
+                                                             4 June 2026
 
 
                          IPSIE SCIM 2.0 Profile
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 November 2026.
+   This Internet-Draft will expire on 6 December 2026.
 
 Copyright Notice
 
@@ -66,6 +66,7 @@ Table of Contents
    4.  Shared Prerequisites
      4.1.  Authentication and Authorization
      4.2.  SCIM Interoperability Requirements
+     4.3.  Performance and Efficiency
    5.  AL1: User Deprovisioning
      5.1.  Deactivate or Reactivate User (PATCH /Users/{id})
      5.2.  Delete User (DELETE /Users/{id})
@@ -236,13 +237,29 @@ Table of Contents
       a SCIM client as defined in [RFC7643] and [RFC7644].
    *  The Application SHALL implement the required functionality of a
       SCIM service provider as defined in [RFC7643] and [RFC7644].
-   *  All SCIM operations SHALL be authenticated and authorized via
-      OAuth 2.0 as specified in Section 4.1.
    *  Local modifications to Users or Groups in the Application are
       prohibited.
-   *  The Application SHALL enforce rate limits on all SCIM endpoints
-      and must respond with appropriate headers, such as "429 Too Many
+
+4.3.  Performance and Efficiency
+
+   *  The Application MUST enforce rate limits on all SCIM endpoints and
+      must respond with appropriate headers, such as "429 Too Many
       Requests" and "Retry-After," when limits are exceeded.
+   *  The Application MUST support at least 25 SCIM requests per second.
+      This requirement is per-tenant for multi-tenant (B2B SaaS, etc.)
+      applications.
+   *  The Application and the Identity Service MUST support the SCIM
+      /Bulk endpoint defined in [RFC7643] section 3.7.
+   *  The Application MUST support PATCH requests that update multiple
+      attributes within a single request.
+   *  The Identity Service SHOULD optimize its SCIM request logic to
+      minimize the number of SCIM requests made for each resource in a
+      short period of time.  As an example, a single PATCH request
+      containing multiple attribute updates should be made rather than
+      updating each attribute in a separate PATCH request.
+   *  The Identity Service SHOULD use the SCIM /Bulk endpoint when it
+      plans to make changes to more than 100 SCIM resources in a 5
+      minute period.
 
 5.  AL1: User Deprovisioning
 
@@ -332,10 +349,6 @@ Table of Contents
    attributes containing credentials in custom schemas.  The Identity
    Service MUST NOT send values for user credentials in any SCIM
    requests.
-
-   |  *DZ note* Set the credential-related requirements as aggressively
-   |  restrictive for now, can define any exceptions or other rules
-   |  later after discussion.
 
 6.1.3.  Create User (POST /Users)
 
