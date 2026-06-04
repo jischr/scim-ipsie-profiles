@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-24T04:18:19.227342+00:00",
+  "timestamp": "2026-06-04T04:52:31.848022+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -355,6 +355,22 @@
       "updatedAt": "2026-05-22T20:51:54Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOQ9uW8s8AAAABETMt0Q",
+      "title": "Necessity of \"IDP shall present token in authorization header\" AuthnAuthZ requirement?",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/20",
+      "state": "CLOSED",
+      "author": "Zollnerd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Nevermind.. <closing>",
+      "createdAt": "2026-06-03T20:49:42Z",
+      "updatedAt": "2026-06-03T20:52:09Z",
+      "closedAt": "2026-06-03T20:52:09Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -700,6 +716,58 @@
       "mergeCommit": {
         "oid": "10fd71cb885f693de37e082c07fd3ed373f86aae"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOQ9uW8s7h900q",
+      "title": "Removed two now-inactive authors from the draft",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/18",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updated authors section to remove inactive authors",
+      "createdAt": "2026-06-02T20:54:52Z",
+      "updatedAt": "2026-06-02T20:54:52Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "10fd71cb885f693de37e082c07fd3ed373f86aae",
+      "headRepository": "Zollnerd/scim-ipsie-profiles",
+      "headRefName": "SCIM-IPSIE-Authors-Update",
+      "headRefOid": "646bb8a62e944043b3e4a2fce36eb0019016adc0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOQ9uW8s7h-xOm",
+      "title": "Added Performance and Efficiency general requirement section",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/19",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added Performance and Efficiency section under general requirements, included rate limiting, SCIM Bulk, and some basic client logic requirements (one PATCH w/ multiple attribute changes is better than multiple PATCH requests with one change each).",
+      "createdAt": "2026-06-02T21:48:45Z",
+      "updatedAt": "2026-06-03T20:47:01Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "10fd71cb885f693de37e082c07fd3ed373f86aae",
+      "headRepository": "Zollnerd/scim-ipsie-profiles",
+      "headRefName": "SCIM-IPSIE-Rate-Limiting",
+      "headRefOid": "ab619c0a92772eb6659d0ff59e885d5330d3049b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
