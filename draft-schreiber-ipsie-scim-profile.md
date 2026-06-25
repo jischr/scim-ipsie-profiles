@@ -50,7 +50,7 @@ This document defines the IPSIE SCIM 2.0 Profile for enterprise identity lifecyc
 The profile is organized according to the three IPSIE Account Lifecycle assurance levels as defined in the IPSIE Levels specification:
 
 * **AL1 - User Deprovisioning**: The Application deprovisions users at the request of the Identity Service. This includes account deactivation and deletion.
-* **AL2 - User and Group Management**: The Identity Service synchronizes user provisioning and group membership with the Application. The Application accepts creation and updates of user accounts and maps group claims to application roles and capabilities.
+* **AL2 - User and Group Management**: The Identity Service synchronizes user provisioning and group membership with the Application. The Application accepts creation and updates of user accounts and maps groups and their memberships to application roles and capabilities.
 * **AL3 - Role Management**: The Application exposes its available roles to the Identity Service, enabling centralized role assignment and synchronization.
 
 Each level is cumulative: AL2 requirements extend AL1, and AL3 requirements extend AL2.
