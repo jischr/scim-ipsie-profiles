@@ -110,7 +110,7 @@ The following requirements ensure consistent and secure handling of access token
 
 * OAuth 2.0 interactions MUST use the client_credentials grant type with JWT Client Authentication as defined in [@!RFC7523] section 2.2.
 * The Identity Provider SHALL acquire an access token and present that token in the {Authorization: Bearer} header on all subsequent SCIM requests.
-* The Application's OAuth 2.0 authorization server SHALL NOT support inclusion of client credentials in the HTTP request-body
+* The Identity Service MUST authenticate to the Application's OAuth 2.0 authorization server using HTTP Basic authentication in the Authorization request header. Transmission of client credentials (client_id and client_secret) in the HTTP request body is prohibited.
 * The token MUST contain a "token_endpoint" value which is the URL of the Identity Service's OAuth 2.0 token endpoint.
 * The Access Token MUST include the "scim" scope and not grant broader permissions.
 * All Authorization Server parameters SHOULD be discovered from OAuth Authorization Server metadata as defined in [@!RFC8414].
