@@ -161,6 +161,19 @@ After a user is deleted, the Application MUST allow the creation of a new user w
 
 > **Editor's Note:** Need to clarify implications for maintaining user data and avoiding conflicts when recreating users with the same username.
 
+## Get User By ID (GET /Users/{id})
+
+The Application MUST support retrieving a single user by ID via the SCIM operation GET /Users/{id}.
+
+## List Users By Alternate Identifier (GET /Users?)
+
+The Application MUST support the following filter expressions:
+
+* username eq \{username\}
+* externalId eq \{externalId\}
+* emails[value eq \{email\}]
+* emails[type eq "work" and value eq \{email\}]
+
 # AL2: User and Group Management
 
 AL2 extends AL1. In addition to deprovisioning, the Identity Service synchronizes user provisioning and group membership with the Application. The Application MUST accept creation and updates of user accounts from the Identity Service and MUST prohibit local account creation for users managed by the Identity Service. The Application MUST support mapping Identity Service groups to local Application roles and capabilities.
@@ -200,19 +213,6 @@ The Identity Service and the Application MUST support updating a user's attribut
 The Application MUST support retrieval of all users via the SCIM operation GET /Users.
 
 The Application SHOULD avoid returning more than 1,000 users per page. Support for cursor-based pagination by the Application is RECOMMENDED.
-
-### Get User By ID (GET /Users/{id})
-
-The Application MUST support retrieving a single user by ID via the SCIM operation GET /Users/{id}.
-
-### List Users By Alternate Identifier (GET /Users?)
-
-The Application MUST support the following filter expressions:
-
-* username eq \{username\}
-* externalId eq \{externalId\}
-* emails[value eq \{email\}]
-* emails[type eq "work" and value eq \{email\}]
 
 ## Group Provisioning Operations
 
