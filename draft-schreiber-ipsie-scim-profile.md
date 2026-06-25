@@ -102,7 +102,7 @@ The following requirements apply to all assurance levels defined in this profile
 
 ## Authentication and Authorization {#authn-authz}
 
-The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of SCIM protocol.
+The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of all SCIM (HTTP) requests.
 
 > **Editor's Note:** This section should be expanded and may need to reference the IPSIE Session Lifecycle 1 (SL1) profile.
 
