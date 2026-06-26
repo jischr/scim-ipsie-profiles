@@ -50,7 +50,7 @@ This document defines the IPSIE SCIM 2.0 Profile for enterprise identity lifecyc
 The profile is organized according to the three IPSIE Account Lifecycle assurance levels as defined in the IPSIE Levels specification:
 
 * **AL1 - User Deprovisioning**: The Application deprovisions users at the request of the Identity Service. This includes account deactivation and deletion.
-* **AL2 - User and Group Management**: The Identity Service synchronizes user provisioning and group membership with the Application. The Application accepts creation and updates of user accounts and maps group claims to application roles and capabilities.
+* **AL2 - User and Group Management**: The Identity Service synchronizes user provisioning and group membership with the Application. The Application accepts creation and updates of user accounts and maps groups and their memberships to application roles and capabilities.
 * **AL3 - Role Management**: The Application exposes its available roles to the Identity Service, enabling centralized role assignment and synchronization.
 
 Each level is cumulative: AL2 requirements extend AL1, and AL3 requirements extend AL2.
@@ -102,7 +102,7 @@ The following requirements apply to all assurance levels defined in this profile
 
 ## Authentication and Authorization {#authn-authz}
 
-The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of SCIM protocol.
+The Identity Service and Application MUST use OAuth 2.0 [@!RFC6749] for authentication and authorization of all SCIM (HTTP) requests.
 
 > **Editor's Note:** This section should be expanded and may need to reference the IPSIE Session Lifecycle 1 (SL1) profile.
 
@@ -110,11 +110,9 @@ The following requirements ensure consistent and secure handling of access token
 
 * OAuth 2.0 interactions MUST use the client_credentials grant type with JWT Client Authentication as defined in [@!RFC7523] section 2.2.
 * The Identity Provider SHALL acquire an access token and present that token in the {Authorization: Bearer} header on all subsequent SCIM requests.
-* The Application's OAuth 2.0 authorization server SHALL NOT support inclusion of client credentials in the HTTP request-body
-* The token MUST contain a "token_endpoint" value which is the URL of the Identity Service's OAuth 2.0 token endpoint.
+* The Identity Service MUST authenticate to the Application's OAuth 2.0 authorization server using HTTP Basic authentication in the Authorization request header. Transmission of client credentials (e.g., client_assertion, client_secret) in the HTTP request body is prohibited.
 * The Access Token MUST include the "scim" scope and not grant broader permissions.
-* All Authorization Server parameters SHOULD be discovered from OAuth Authorization Server metadata as defined in [@!RFC8414].
-* The Identity Service SHOULD expose a jwks_uri to allow the Application to perform signature verification
+* Both the Application and the Identity Service MUST expose OAuth Authorization Server metadata as defined in [@!RFC8414]. The Application's metadata document MUST include a "token_endpoint" value identifying its OAuth 2.0 token endpoint. The Identity Service's metadata document MUST include a "jwks_uri" so that the Application can retrieve the Identity Service's public keys and validate the signatures of JWTs it issues.
 
 ## SCIM Interoperability Requirements
 
@@ -163,6 +161,19 @@ After a user is deleted, the Application MUST allow the creation of a new user w
 
 > **Editor's Note:** Need to clarify implications for maintaining user data and avoiding conflicts when recreating users with the same username.
 
+## Get User By ID (GET /Users/{id})
+
+The Application MUST support retrieving a single user by ID via the SCIM operation GET /Users/{id}.
+
+## List Users By Alternate Identifier (GET /Users?)
+
+The Application MUST support the following filter expressions:
+
+* username eq \{username\}
+* externalId eq \{externalId\}
+* emails[value eq \{email\}]
+* emails[type eq "work" and value eq \{email\}]
+
 # AL2: User and Group Management
 
 AL2 extends AL1. In addition to deprovisioning, the Identity Service synchronizes user provisioning and group membership with the Application. The Application MUST accept creation and updates of user accounts from the Identity Service and MUST prohibit local account creation for users managed by the Identity Service. The Application MUST support mapping Identity Service groups to local Application roles and capabilities.
@@ -202,19 +213,6 @@ The Identity Service and the Application MUST support updating a user's attribut
 The Application MUST support retrieval of all users via the SCIM operation GET /Users.
 
 The Application SHOULD avoid returning more than 1,000 users per page. Support for cursor-based pagination by the Application is RECOMMENDED.
-
-### Get User By ID (GET /Users/{id})
-
-The Application MUST support retrieving a single user by ID via the SCIM operation GET /Users/{id}.
-
-### List Users By Alternate Identifier (GET /Users?)
-
-The Application MUST support the following filter expressions:
-
-* username eq \{username\}
-* externalId eq \{externalId\}
-* emails[value eq \{email\}]
-* emails[type eq "work" and value eq \{email\}]
 
 ## Group Provisioning Operations
 
