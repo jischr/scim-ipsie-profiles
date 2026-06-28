@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-07T04:46:17.458971+00:00",
+  "timestamp": "2026-06-28T04:40:18.231848+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -799,6 +799,34 @@
       "mergedBy": "jischr",
       "mergeCommit": {
         "oid": "d12c15d391bddf182cd936edc64196ab5716eb1d"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOQ9uW8s7qwUX6",
+      "title": "Addressing feedback: terminology, auth requirements, AL1 GET operations",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/pull/22",
+      "state": "MERGED",
+      "author": "Zollnerd",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\n- Replace \"claims\" terminology in AL2 introduction with SCIM-accurate language (\"groups and their memberships\")\n- Clarify client credentials transmission requirement: explicit that credentials go in the Authorization header, not the request body\n- Restructure OAuth AS metadata requirements to cover both Application and Identity Service; promote `jwks_uri` to MUST for the Identity Service\n- Move `GET /Users/{id}` and filtered `GET /Users` to AL1, where they are needed to discover server-assigned `{id}` before PATCH/DELETE operations; remove duplicates from AL2",
+      "createdAt": "2026-06-25T21:52:20Z",
+      "updatedAt": "2026-06-26T20:13:45Z",
+      "baseRepository": "jischr/scim-ipsie-profiles",
+      "baseRefName": "main",
+      "baseRefOid": "22f29045b9dba6ff2e4d90a54af170474c34c038",
+      "headRepository": "Zollnerd/scim-ipsie-profiles",
+      "headRefName": "dz-ipsie-feedback-round1",
+      "headRefOid": "c865563c1256b66532396a5a1d7edeb758abb7a7",
+      "closedAt": "2026-06-26T20:13:32Z",
+      "mergedAt": "2026-06-26T20:13:32Z",
+      "mergedBy": "Zollnerd",
+      "mergeCommit": {
+        "oid": "91d3fb678595dd0a3df4748245d695b248dbe23c"
       },
       "comments": [],
       "reviews": []
