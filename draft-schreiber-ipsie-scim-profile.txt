@@ -3,10 +3,10 @@
 
 
 IPSIE                                                       J. Schreiber
-Internet-Draft                                                      SGNL
+Internet-Draft                                                Crowstrike
 Intended status: Informational                                D. Zollner
-Expires: 28 December 2026                                           Okta
-                                                            26 June 2026
+Expires: 3 January 2027                                             Okta
+                                                             2 July 2026
 
 
                          IPSIE SCIM 2.0 Profile
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 December 2026.
+   This Internet-Draft will expire on 3 January 2027.
 
 Copyright Notice
 
@@ -563,8 +563,8 @@ Table of Contents
 Authors' Addresses
 
    Jen Schreiber
-   SGNL
-   Email: jen@sgnl.ai
+   Crowstrike
+   Email: jwschreib@gmail.com
 
 
    Danny Zollner
