@@ -5,12 +5,12 @@
 IPSIE                                                       J. Schreiber
 Internet-Draft                                                Crowstrike
 Intended status: Informational                                D. Zollner
-Expires: 3 January 2027                                             Okta
-                                                             2 July 2026
+Expires: 7 January 2027                                             Okta
+                                                             6 July 2026
 
 
-                         IPSIE SCIM 2.0 Profile
-               draft-schreiber-ipsie-scim-profile-latest
+                         SCIM 2.0 IPSIE Profile
+               draft-schreiber-scim-ipsie-profile-latest
 
 Abstract
 
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2027.
+   This Internet-Draft will expire on 7 January 2027.
 
 Copyright Notice
 
@@ -94,12 +94,12 @@ Table of Contents
    This note is to be removed before publishing as an RFC.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/jischr/ipsie-scim-al1-profile
-   (https://github.com/jischr/ipsie-scim-al1-profile).
+   https://github.com/jischr/scim-ipsie-profiles
+   (https://github.com/jischr/scim-ipsie-profiles).
 
 2.  Introduction
 
-   This document defines the IPSIE SCIM 2.0 Profile for enterprise
+   This document defines the SCIM 2.0 IPSIE Profile for enterprise
    identity lifecycle management.  It provides a clear reference for
    SCIM deployments that require a well-defined security baseline
    meeting best practices for interoperable enterprise identity
@@ -187,7 +187,7 @@ Table of Contents
    Note: When SCIM is applied to the context of IPSIE, the Identity
    Service acts as the SCIM client and the Application acts as the SCIM
    service provider.  The document will use the Role terms below for
-   consistency across IPSIE Profiles.
+   consistency across IPSIE profiles.
 
 4.  Shared Prerequisites
 
