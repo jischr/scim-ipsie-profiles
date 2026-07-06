@@ -1,12 +1,12 @@
 # SCIM IPSIE Profiles
 
-This is the working area for the IETF Internet-Draft, "IPSIE Account Lifecycle (AL) SCIM 2.0 Profile".
+This is the working area for the IETF Internet-Draft, "SCIM 2.0 IPSIE Profile".
 
-* [Editor's Copy](https://jischr.github.io/scim-ipsie-profiles/draft-schreiber-ipsie-scim-al1-profile.html)
+* [Editor's Copy](https://jischr.github.io/scim-ipsie-profiles/draft-schreiber-scim-ipsie-profile.html)
 
 ## Abstract
 
-This document defines profiles for SCIM 2.0 to meet the security and interoperability requirements for identity lifecycle management within enterprises. Within the context of SCIM, the profiles establish requirements for provisioning, account management, client authentication, and identity synchronization.
+This document defines a profile for SCIM 2.0 to meet the security and interoperability requirements for identity lifecycle management within enterprises. Within the context of SCIM, the profile establishes requirements for provisioning, account management, client authentication, and identity synchronization across three Account Lifecycle assurance levels: AL1 (User Deprovisioning), AL2 (User and Group Management), and AL3 (Role Management).
 
 ## Contributing
 
@@ -27,5 +27,5 @@ Command line usage requires that you have the necessary software installed. See 
 
 ## Authors
 
-* Jen Schreiber (SGNL)
-* Mark Maguire (Aujas Cybersecurity)
+* Jen Schreiber (CrowdStrike)
+* Danny Zollner (Okta)
