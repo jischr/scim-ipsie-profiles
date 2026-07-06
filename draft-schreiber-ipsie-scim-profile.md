@@ -1,6 +1,6 @@
 %%%
-title = "IPSIE SCIM 2.0 Profile"
-abbrev = "IPSIE SCIM"
+title = "SCIM 2.0 IPSIE Profile"
+abbrev = "SCIM IPSIE"
 ipr = "trust200902"
 area = "Applications and Real-Time"
 workgroup = "IPSIE"
@@ -8,7 +8,7 @@ keyword = ["scim", "ipsie", "provisioning", "identity", "oauth"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-schreiber-ipsie-scim-profile-latest"
+value = "draft-schreiber-scim-ipsie-profile-latest"
 stream = "IETF"
 status = "informational"
 
@@ -41,11 +41,11 @@ This document defines a profile for SCIM 2.0 to meet the security and interopera
 This note is to be removed before publishing as an RFC.
 
 Source for this draft and an issue tracker can be found at
-<https://github.com/jischr/ipsie-scim-al1-profile>.
+<https://github.com/jischr/scim-ipsie-profiles>.
 
 # Introduction
 
-This document defines the IPSIE SCIM 2.0 Profile for enterprise identity lifecycle management. It provides a clear reference for SCIM deployments that require a well-defined security baseline meeting best practices for interoperable enterprise identity management.
+This document defines the SCIM 2.0 IPSIE Profile for enterprise identity lifecycle management. It provides a clear reference for SCIM deployments that require a well-defined security baseline meeting best practices for interoperable enterprise identity management.
 
 The profile is organized according to the three IPSIE Account Lifecycle assurance levels as defined in the IPSIE Levels specification:
 
@@ -94,7 +94,7 @@ Application
 
 > Acts as the SCIM server or service provider, hosting SCIM endpoints and processing all provisioning requests.
 
-Note: When SCIM is applied to the context of IPSIE, the Identity Service acts as the SCIM client and the Application acts as the SCIM service provider. The document will use the Role terms below for consistency across IPSIE Profiles.
+Note: When SCIM is applied to the context of IPSIE, the Identity Service acts as the SCIM client and the Application acts as the SCIM service provider. The document will use the Role terms below for consistency across IPSIE profiles.
 
 # Shared Prerequisites
 
