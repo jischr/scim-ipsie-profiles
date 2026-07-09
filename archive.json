@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-28T04:40:18.231848+00:00",
+  "timestamp": "2026-07-09T04:00:02.483690+00:00",
   "repo": "jischr/scim-ipsie-profiles",
   "labels": [
     {
@@ -370,6 +370,70 @@
       "createdAt": "2026-06-03T20:49:42Z",
       "updatedAt": "2026-06-03T20:52:09Z",
       "closedAt": "2026-06-03T20:52:09Z",
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOQ9uW8s8AAAABIIdhvg",
+      "title": "Move the 5 minute propagation requirement to the IPSIE Account Lifecycle spec",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/23",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Line 141 currently reads:\n\n> The Identity Service SHOULD propagate user deactivation events to the Application within 5 minutes of the user being deactivated.\n\nThis is a timing requirement on the Identity Service's propagation behavior, not something specific to the SCIM protocol mechanics covered by this profile. It should be defined once, globally, at the IPSIE Account Lifecycle level, and referenced (not restated) here, rather than being defined specifically within the SCIM Account Lifecycle profile.",
+      "createdAt": "2026-07-08T20:02:38Z",
+      "updatedAt": "2026-07-08T20:02:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOQ9uW8s8AAAABIIdtxA",
+      "title": "Remove the 5 minute revocation requirement on line 143",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/24",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Line 143 currently reads:\n\n> The Application SHOULD respond to user deactivation events by revoking the ability for the user to continue accessing the Application, including the revocation of currently active sessions. Session revocation mechanisms are outside the scope of this profile. Revocation SHOULD occur within 5 minutes of receiving the deactivation request.\n\nSCIM is a synchronous protocol: when the Identity Service (SCIM client) makes a request to deactivate or delete a user, the Application (SCIM service provider) processes that request synchronously in the response cycle. There is no meaningful additional delay for the Application to introduce here, so a separate \"within 5 minutes of receiving the deactivation request\" timing requirement is unnecessary. The requirement should be removed; a timely synchronous response to the SCIM request is adequate.",
+      "createdAt": "2026-07-08T20:03:09Z",
+      "updatedAt": "2026-07-08T20:03:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOQ9uW8s8AAAABIIdymw",
+      "title": "To-do: define AL actions and map them to specific SCIM protocol requests",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/25",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Open to-do: the IPSIE WG should define the set of Account Lifecycle (AL) actions, and this profile should then map each defined AL action to the specific SCIM protocol request(s) that implement it.\n\nFiling here to track within this repo as well as raising with the IPSIE WG, since the SCIM-side mapping work depends on the AL action definitions landing at the IPSIE Account Lifecycle level.",
+      "createdAt": "2026-07-08T20:03:21Z",
+      "updatedAt": "2026-07-08T20:03:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOQ9uW8s8AAAABIIf7aA",
+      "title": "Decide whether upper response time limits apply to AL actions mapped to SCIM requests",
+      "url": "https://github.com/jischr/scim-ipsie-profiles/issues/26",
+      "state": "OPEN",
+      "author": "Zollnerd",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Follow-up to #25: once AL actions are defined and mapped to specific SCIM protocol requests, decide whether any upper response time limits should apply to those actions, and if so, what they should be.",
+      "createdAt": "2026-07-08T20:09:13Z",
+      "updatedAt": "2026-07-08T20:09:13Z",
+      "closedAt": null,
       "comments": []
     }
   ],
