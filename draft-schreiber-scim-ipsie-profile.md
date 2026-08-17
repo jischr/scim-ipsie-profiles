@@ -16,7 +16,7 @@ status = "informational"
 initials = "J."
 surname = "Schreiber"
 fullname = "Jen Schreiber"
-organization = "Crowstrike"
+organization = "Crowdstrike"
   [author.address]
   email = "jwschreib@gmail.com"
 
