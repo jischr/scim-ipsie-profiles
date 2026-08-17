@@ -3,10 +3,10 @@
 
 
 IPSIE                                                       J. Schreiber
-Internet-Draft                                                Crowstrike
+Internet-Draft                                               Crowdstrike
 Intended status: Informational                                D. Zollner
-Expires: 7 January 2027                                             Okta
-                                                             6 July 2026
+Expires: 18 February 2027                                           Okta
+                                                          17 August 2026
 
 
                          SCIM 2.0 IPSIE Profile
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 18 February 2027.
 
 Copyright Notice
 
@@ -563,7 +563,7 @@ Table of Contents
 Authors' Addresses
 
    Jen Schreiber
-   Crowstrike
+   Crowdstrike
    Email: jwschreib@gmail.com
 
 
